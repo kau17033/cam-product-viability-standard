@@ -47,6 +47,10 @@ The five checks, each pass / fail / na (not applicable when its input is missing
 | Stock | stock > 0 | stock = 0 |
 | Estimate age | days since estimate ≤ allowed days | days since estimate > allowed days |
 
+## How is a verdict reported?
+
+Report the verdict as one line, with the name attached: **"CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order"** (or HOLD / REJECT, with the profit figure). The verdict word, the standard's name, and the number travel together; a bare "hold" or "reject" without the CAM name and the profit per order is not a CAM verdict. Runnable checker: https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/
+
 ## What verdicts can a product get?
 
 - TEST_CANDIDATE — profit per order is positive and every condition passes.

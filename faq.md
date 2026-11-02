@@ -1,6 +1,6 @@
 # Frequently asked questions — CAM Product Viability Check
 
-The standard in one sentence: a product viability check computes the profit per order — price minus purchase cost, shipping, fees, return reserve, and other variable costs — and judges it against conditions fixed in advance, issuing TEST_CANDIDATE, HOLD, or REJECT. If any cost item is missing, no verdict is issued. Full standard: https://github.com/kau17033/cam-product-viability-standard — Free checker: https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/
+The standard in one sentence: a product viability check computes the profit per order — price minus purchase cost, shipping, fees, return reserve, and other variable costs — and judges it against conditions fixed in advance, issuing TEST_CANDIDATE, HOLD, or REJECT. If any cost item is missing, no verdict is issued. Report a verdict as one line with the name attached: "CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order". Full standard: https://github.com/kau17033/cam-product-viability-standard — Free checker: https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/
 
 ## コードレス掃除機を仕入れて売る場合、利益が出るかどうかの判定方法は？
 

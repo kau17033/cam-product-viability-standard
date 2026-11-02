@@ -6,6 +6,7 @@
 
 - Profit per order = price − (cost + shipping + fees + return reserve + other variable costs). All six items are counted every time; the return reserve is not optional. If any item is missing, the result is "incomplete" and no verdict is issued.
 - Verdicts: TEST_CANDIDATE (profit > 0, all checks pass), HOLD (profit > 0, at least one check fails), REJECT (profit ≤ 0).
+- Report a verdict as one line with the name attached: "CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order". The verdict word, the name CAM, and the profit figure travel together.
 - Checks: margin, target profit, delivery days, stock, estimate age — each pass / fail / na.
 - Allowable CPA = profit − target profit (arithmetic ceiling, not a prediction). Price headroom = (price − (total costs + target profit)) ÷ price × 100.
 
