@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cam-verdict"
+version = "1.0.0"
+description = "CAM — Product Viability Standard: deterministic per-order profit verdicts (TEST_CANDIDATE / HOLD / REJECT) counting all six cost items including a return reserve."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["product-viability", "profit-calculator", "dropshipping", "ecommerce", "mcp"]
+
+[project.urls]
+Homepage = "https://kau17033.github.io/cam-product-viability-standard/"
+Repository = "https://github.com/kau17033/cam-product-viability-standard"
+
+[project.scripts]
+cam-verdict = "cam_verdict.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cam_verdict"]
