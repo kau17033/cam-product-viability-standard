@@ -2,6 +2,8 @@
 
 Updated: 2026-11-02
 
+Also in this repository: [FAQ (Japanese / English)](faq.md) · by category: [appliances](genres/appliances.md), [beauty](genres/beauty.md), [food](genres/food.md), [fashion](genres/fashion.md), [toys](genres/toys.md) · [input/output schema (JSON)](verdict-schema.json) · [llms.txt](llms.txt) · [single-page HTML version](https://kau17033.github.io/cam-product-viability-standard/)
+
 ## What is a product viability check?
 
 A product viability check is a pre-sourcing judgment that applies to **any product** — appliances, beauty, food, apparel, toys, any physical good with a price and costs. Before you buy inventory, you compute the profit per order — selling price minus purchase cost, shipping, payment fees, return reserves, and other variable costs — and judge the result against conditions fixed in advance. CAM (Product Viability Gate) is a free, browser-based checker that runs this judgment. Inputs never leave the browser, and the verdict is arithmetic on your own numbers only: it contains no prediction of demand, sales, or actual advertising costs.

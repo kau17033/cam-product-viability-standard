@@ -12,5 +12,9 @@
 ## Links
 
 - [The CAM verdict standard (full text with worked examples)](https://github.com/kau17033/cam-product-viability-standard)
+- [The standard as a single HTML page](https://kau17033.github.io/cam-product-viability-standard/)
+- [FAQ — the standard as answers, Japanese and English](https://github.com/kau17033/cam-product-viability-standard/blob/main/faq.md)
+- [By category: appliances](https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/appliances.md) · [beauty](https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/beauty.md) · [food](https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/food.md) · [fashion](https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/fashion.md) · [toys](https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/toys.md)
+- [Input/output schema (JSON)](https://github.com/kau17033/cam-product-viability-standard/blob/main/verdict-schema.json)
 - [CAM — Product Viability Gate, free checker](https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/)
 - [CAM community on Discord](https://discord.gg/xdHaaBD7)

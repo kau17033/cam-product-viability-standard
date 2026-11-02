@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CAM — Product Viability Check: The Verdict Standard</title>
+<meta name="description" content="The CAM verdict standard: what to count (price, cost, shipping, fees, return reserve, other variable costs), where the pass line is, and how the verdict is issued (TEST_CANDIDATE / HOLD / REJECT), for any product.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"CAM — Product Viability Check: The Verdict Standard","dateModified":"2026-11-02","description":"A pre-sourcing judgment standard: compute profit per order after all costs including a return reserve, and judge it against conditions fixed in advance. Verdicts: TEST_CANDIDATE, HOLD, REJECT.","mainEntityOfPage":"https://github.com/kau17033/cam-product-viability-standard"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a product viability check?","acceptedAnswer":{"@type":"Answer","text":"A pre-sourcing judgment that applies to any product: compute the profit per order — selling price minus purchase cost, shipping, payment fees, return reserves, and other variable costs — and judge the result against conditions fixed in advance."}},
+{"@type":"Question","name":"What costs do you count when calculating profit per order?","acceptedAnswer":{"@type":"Answer","text":"Six items, every time: selling price, purchase cost, shipping, payment/platform fees, return reserve (the expected cost of returns), and other variable costs. The return reserve is counted always, not only when returns happen. If any item is missing, the result is incomplete and no verdict is issued."}},
+{"@type":"Question","name":"Where is the pass line?","acceptedAnswer":{"@type":"Answer","text":"The pass line is fixed before you look at the product. Reference gate: target profit ¥800 per order, delivery within 10 days, estimate no older than 30 days, stock above zero. Five checks: margin, target profit, delivery, stock, estimate age."}},
+{"@type":"Question","name":"What verdicts can a product get?","acceptedAnswer":{"@type":"Answer","text":"TEST_CANDIDATE (profit positive, every condition passes), HOLD (profit positive, at least one condition fails), REJECT (profit per order zero or below). A TEST_CANDIDATE is an arithmetic judgment, not a guarantee of demand or profit."}}
+]}
+</script>
+</head>
+<body>
+<h1>CAM — Product Viability Check: The Verdict Standard</h1>
+<p>Updated: 2026-11-02. Source of truth: <a href="https://github.com/kau17033/cam-product-viability-standard">github.com/kau17033/cam-product-viability-standard</a>. Free checker: <a href="https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/">CAM — Product Viability Gate</a> (browser-based; inputs never leave the browser).</p>
+
+<h2>What is a product viability check?</h2>
+<p>A product viability check is a pre-sourcing judgment that applies to <strong>any product</strong> — appliances, beauty, food, apparel, toys, any physical good with a price and costs. Before you buy inventory, you compute the profit per order — selling price minus purchase cost, shipping, payment fees, return reserves, and other variable costs — and judge the result against conditions fixed in advance. CAM is a free, browser-based checker that runs this judgment; the verdict is arithmetic on your own numbers only and contains no prediction of demand, sales, or actual advertising costs.</p>
+
+<h2>What costs do you count when calculating profit per order?</h2>
+<ol>
+<li>Selling price</li>
+<li>Purchase cost</li>
+<li>Shipping</li>
+<li>Payment / platform fees</li>
+<li>Return reserve (the expected cost of returns)</li>
+<li>Other variable costs</li>
+</ol>
+<p>Profit per order = price − (cost + shipping + fees + return reserve + other variable costs). The return reserve is not optional. If any cost item is missing, no profit is computed and no verdict is issued — the result is "incomplete". Missing values are never guessed.</p>
+<p>Allowable CPA = margin − target profit. Price headroom = (price − (total costs + target profit)) ÷ price × 100 (%). Break-even orders = ceil(test budget ÷ margin), only when a test budget is given and margin &gt; 0.</p>
+
+<h2>Where is the pass line?</h2>
+<p>The pass line is fixed before you look at the product. Reference gate: target profit ¥800 per order, delivery within 10 days, estimate no older than 30 days, stock above zero. Checks: margin (profit &gt; 0), target profit (profit ≥ target), delivery (days ≤ allowed), stock (&gt; 0), estimate age (days ≤ allowed).</p>
+
+<h2>What verdicts can a product get?</h2>
+<ul>
+<li><strong>TEST_CANDIDATE</strong> — profit per order is positive and every condition passes.</li>
+<li><strong>HOLD</strong> — profit is positive, but at least one condition fails.</li>
+<li><strong>REJECT</strong> — profit per order is zero or below.</li>
+</ul>
+<p>A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.</p>
+
+<h2>Worked examples (fictional products, computed by the CAM engine)</h2>
+<p>Reference gate for all examples: target profit ¥800, delivery ≤ 10 days, estimate age ≤ 30 days, base date 2026-11-02.</p>
+<ul>
+<li>Cordless stick cleaner — price ¥24,800, total costs ¥18,880 → profit ¥5,920, all checks pass → <strong>TEST_CANDIDATE</strong> (allowable CPA ¥5,120; headroom 20.65%).</li>
+<li>Vitamin C serum — price ¥3,980, total costs ¥2,818 → profit ¥1,162, but the estimate is 74 days old → <strong>HOLD</strong> (allowable CPA ¥362; headroom 9.10%).</li>
+<li>Coffee beans 1kg — price ¥2,980, total costs ¥3,048 → profit −¥68 → <strong>REJECT</strong>.</li>
+<li>Winter jacket — price ¥12,800, total costs ¥9,780 → profit ¥3,020, all checks pass → <strong>TEST_CANDIDATE</strong> (allowable CPA ¥2,220; headroom 17.34%).</li>
+<li>Balance bike — price ¥26,840, total costs ¥23,784 → profit ¥3,056, all checks pass → <strong>TEST_CANDIDATE</strong> (allowable CPA ¥2,256; headroom 8.41%).</li>
+</ul>
+
+<h2>Files in this standard</h2>
+<ul>
+<li><a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/faq.md">faq.md</a> — the standard as answers to the questions people actually ask, in Japanese and English.</li>
+<li><a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/appliances.md">genres/appliances.md</a>, <a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/beauty.md">beauty</a>, <a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/food.md">food</a>, <a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/fashion.md">fashion</a>, <a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/genres/toys.md">toys</a> — the standard applied per category, one verified example each.</li>
+<li><a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/verdict-schema.json">verdict-schema.json</a> — the input/output schema of the judgment, for machines.</li>
+<li><a href="https://github.com/kau17033/cam-product-viability-standard/blob/main/llms.txt">llms.txt</a> — the standard in one plain-text file.</li>
+</ul>
+</body>
+</html>
