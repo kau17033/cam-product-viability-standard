@@ -12,3 +12,9 @@ Count six items, every time: price, purchase cost, shipping, fees, return reserv
 ## Worked example (fictional, computed by the CAM engine)
 
 Coffee beans 1kg: price ¥2,980; cost ¥1,980; shipping ¥640; fees ¥298; return reserve ¥60; other ¥70. Profit per order = −¥68 → **REJECT**. A product can sell well and still lose money on every order once shipping and the return reserve are counted.
+
+## Second worked example (fictional, computed by the CAM engine)
+
+Protein powder 1kg: price ¥4,480; cost ¥2,680; shipping ¥700; fees ¥448; return reserve ¥100; other ¥150. Profit per order = ¥402 — positive, but the price estimate is 53 days old (limit 30) and the profit is below the ¥800 target → **HOLD** (allowable CPA −¥398).
+
+CAM verdict: HOLD — profit ¥402 per order

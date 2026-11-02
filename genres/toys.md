@@ -12,3 +12,9 @@ Count six items, every time: price, purchase cost, shipping, fees, return reserv
 ## Worked example (fictional, computed by the CAM engine)
 
 Balance bike: price ¥26,840; cost ¥18,900; shipping ¥2,200; fees ¥1,476; return reserve ¥700; other ¥508. Profit per order = ¥3,056. All checks pass → **TEST_CANDIDATE** (allowable CPA ¥2,256; price headroom 8.41%).
+
+## Second worked example (fictional, computed by the CAM engine)
+
+Wooden building blocks: price ¥5,980; cost ¥3,200; shipping ¥700; fees ¥598; return reserve ¥450; other ¥150. Profit per order = ¥882 — above the ¥800 target, but delivery takes 11 days (limit 10) → **HOLD** (allowable CPA ¥82; price headroom 1.37%).
+
+CAM verdict: HOLD — profit ¥882 per order

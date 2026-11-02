@@ -12,3 +12,9 @@ Count six items, every time: price, purchase cost, shipping, fees, return reserv
 ## Worked example (fictional, computed by the CAM engine)
 
 Winter jacket: price ¥12,800; cost ¥6,400; shipping ¥900; fees ¥1,280; return reserve ¥900; other ¥300. Profit per order = ¥3,020. All checks pass → **TEST_CANDIDATE** (allowable CPA ¥2,220; price headroom 17.34%).
+
+## Second worked example (fictional, computed by the CAM engine)
+
+Sneakers: price ¥9,800; cost ¥5,600; shipping ¥800; fees ¥980; return reserve ¥900; other ¥200. Profit per order = ¥1,320. All checks pass → **TEST_CANDIDATE** (allowable CPA ¥520; price headroom 5.31%).
+
+CAM verdict: TEST_CANDIDATE — profit ¥1,320 per order

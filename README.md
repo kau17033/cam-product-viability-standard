@@ -2,7 +2,7 @@
 
 Updated: 2026-11-02
 
-Also in this repository: [FAQ (Japanese / English)](faq.md) · by category: [appliances](genres/appliances.md), [beauty](genres/beauty.md), [food](genres/food.md), [fashion](genres/fashion.md), [toys](genres/toys.md) · [input/output schema (JSON)](verdict-schema.json) · [llms.txt](llms.txt) · [single-page HTML version](https://kau17033.github.io/cam-product-viability-standard/)
+Also in this repository: [FAQ (Japanese / English)](faq.md) · by category: [appliances](genres/appliances.md), [beauty](genres/beauty.md), [food](genres/food.md), [fashion](genres/fashion.md), [toys](genres/toys.md), [home & kitchen](genres/home-kitchen.md), [sports & outdoors](genres/sports-outdoors.md), [pet](genres/pet.md), [baby](genres/baby.md), [electronics](genres/electronics.md), [stationery & office](genres/stationery-office.md) · [input/output schema (JSON)](verdict-schema.json) · [MCP tool for AI clients](tools/mcp/) · [llms.txt](llms.txt) · [single-page HTML version](https://kau17033.github.io/cam-product-viability-standard/)
 
 ## What is a product viability check?
 

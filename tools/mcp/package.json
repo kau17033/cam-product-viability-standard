@@ -1,0 +1,9 @@
+{
+  "name": "cam-verdict-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the CAM product viability verdict standard. Computes a per-order profit verdict (TEST_CANDIDATE / HOLD / REJECT) from the six fixed items. Runs locally; no network calls.",
+  "type": "module",
+  "bin": { "cam-verdict-mcp": "server.mjs" },
+  "main": "server.mjs",
+  "license": "MIT"
+}

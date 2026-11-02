@@ -12,3 +12,9 @@ Count six items, every time: price, purchase cost, shipping, fees, return reserv
 ## Worked example (fictional, computed by the CAM engine)
 
 Cordless stick cleaner: price ¥24,800; cost ¥14,900; shipping ¥1,480; fees ¥1,240; return reserve ¥900; other ¥360. Profit per order = ¥5,920. All checks pass → **TEST_CANDIDATE** (allowable CPA ¥5,120; price headroom 20.65%).
+
+## Second worked example (fictional, computed by the CAM engine)
+
+Robot vacuum: price ¥39,800; cost ¥29,800; shipping ¥1,500; fees ¥3,980; return reserve ¥2,000; other ¥500. Profit per order = ¥2,020. All checks pass → **TEST_CANDIDATE** (allowable CPA ¥1,220; price headroom 3.07%).
+
+CAM verdict: TEST_CANDIDATE — profit ¥2,020 per order

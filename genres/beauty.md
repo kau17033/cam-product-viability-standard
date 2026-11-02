@@ -12,3 +12,9 @@ Count six items, every time: price, purchase cost, shipping, fees, return reserv
 ## Worked example (fictional, computed by the CAM engine)
 
 Vitamin C serum: price ¥3,980; cost ¥1,740; shipping ¥420; fees ¥398; return reserve ¥160; other ¥100. Profit per order = ¥1,162 — positive, but the price estimate is 74 days old (limit 30) → **HOLD** (allowable CPA ¥362; price headroom 9.10%).
+
+## Second worked example (fictional, computed by the CAM engine)
+
+Hair oil 100ml: price ¥2,980; cost ¥1,350; shipping ¥420; fees ¥298; return reserve ¥240; other ¥90. Profit per order = ¥582 — positive, but below the ¥800 target → **HOLD** (allowable CPA −¥218).
+
+CAM verdict: HOLD — profit ¥582 per order
