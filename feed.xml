@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>CAM — Product Viability Standard</title>
+<link>https://kau17033.github.io/cam-product-viability-standard/</link>
+<description>The fixed standard for per-product profitability verdicts: six cost items including a return reserve, verdict vocabulary TEST_CANDIDATE / HOLD / REJECT, verified worked examples.</description>
+<item><title>The verdict standard (full text)</title><link>https://github.com/kau17033/cam-product-viability-standard</link><guid>cam-standard-readme</guid></item>
+<item><title>Verification: 65,000,000 cases, 0 violations</title><link>https://github.com/kau17033/cam-product-viability-standard/blob/main/verification.md</link><guid>cam-standard-verification</guid></item>
+<item><title>Benchmark: profitability answers, with and without a fixed standard</title><link>https://github.com/kau17033/cam-product-viability-standard/blob/main/benchmark.md</link><guid>cam-standard-benchmark</guid></item>
+</channel></rss>
