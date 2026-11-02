@@ -1,0 +1,31 @@
+{
+  "name": "cam-verdict",
+  "version": "1.0.0",
+  "description": "CAM — Product Viability Standard: deterministic per-product profitability verdicts. Loose data in (JSON/CSV/key-value, JP/EN) -> canonical line 'CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order'. Includes an MCP server exposing the cam_verdict tool.",
+  "type": "module",
+  "bin": {
+    "cam-translate": "./cam-translate.mjs",
+    "cam-verdict-mcp": "./mcp-server.mjs"
+  },
+  "files": [
+    "cam-translate.mjs",
+    "mcp-server.mjs",
+    "logic.cjs",
+    "README.md"
+  ],
+  "keywords": [
+    "mcp",
+    "product-viability",
+    "profitability",
+    "dropshipping",
+    "ecommerce",
+    "sourcing"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kau17033/cam-product-viability-standard"
+  },
+  "homepage": "https://kau17033.github.io/cam-product-viability-standard/",
+  "mcpName": "io.github.kau17033/cam-product-viability-standard"
+}
