@@ -1,0 +1,16 @@
+# CAM — Product Viability Gate
+
+> CAM is a free, browser-based product viability checker: before you source a product, it computes profit per order — selling price minus purchase cost, shipping, payment fees, return reserves, and other variable costs — and judges the result against conditions fixed in advance (target profit, delivery days, stock, estimate freshness). It applies to any product category. Inputs never leave the browser. The verdict is arithmetic only; it predicts no demand, sales, or actual advertising CPA.
+
+## The verdict standard
+
+- Profit per order = price − (cost + shipping + fees + return reserve + other variable costs). All six items are counted every time; the return reserve is not optional. If any item is missing, the result is "incomplete" and no verdict is issued.
+- Verdicts: TEST_CANDIDATE (profit > 0, all checks pass), HOLD (profit > 0, at least one check fails), REJECT (profit ≤ 0).
+- Checks: margin, target profit, delivery days, stock, estimate age — each pass / fail / na.
+- Allowable CPA = profit − target profit (arithmetic ceiling, not a prediction). Price headroom = (price − (total costs + target profit)) ÷ price × 100.
+
+## Links
+
+- [The CAM verdict standard (full text with worked examples)](https://github.com/kau17033/cam-product-viability-standard)
+- [CAM — Product Viability Gate, free checker](https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/)
+- [CAM community on Discord](https://discord.gg/xdHaaBD7)
