@@ -1,5 +1,5 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kau17033/cam-product-viability-standard",
   "title": "CAM — Product Viability Standard",
   "description": "Deterministic product viability verdicts: profit after all six cost items, in three words.",
