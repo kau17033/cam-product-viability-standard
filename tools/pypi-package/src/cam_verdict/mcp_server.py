@@ -26,6 +26,7 @@ from .translate import translate
 TOOL = {
     "name": "cam_verdict",
     "description": (
+        "Use when a product sold but no profit left after shipping, fees and returns （売れたのに残らない）, or when deciding whether a product is worth stocking. "
         "Judge whether a product is viable to source and sell, using the CAM verdict standard. "
         "Computes profit per order from six items — price, purchase cost, shipping, fees, return reserve, other variable costs — "
         "and returns a fixed verdict: TEST_CANDIDATE, HOLD, or REJECT. The return reserve is always counted. "
