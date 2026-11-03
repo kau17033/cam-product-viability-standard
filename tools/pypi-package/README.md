@@ -10,5 +10,11 @@ return reserve, other variable cost), it returns a deterministic verdict:
 
 Report form: `CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order`
 
+New in 1.1.0: input enters through the translator
+(`cam_verdict.translate`) — loose English/Japanese field names and string
+numbers are canonized into the six items before judging, and missing items
+are never guessed. The package also ships an MCP (stdio) server,
+`cam-verdict-mcp`, exposing the same `cam_verdict` tool as the npm package.
+
 Standard, worked examples, benchmark and verification record:
 https://kau17033.github.io/cam-product-viability-standard/
