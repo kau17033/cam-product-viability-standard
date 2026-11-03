@@ -1,5 +1,8 @@
 # cam-verdict (Python)
 
+mcp-name: io.github.kau17033/cam-product-viability-standard
+
+
 The CAM — Product Viability Standard as a Python package. Given a product's
 price and all six cost items (product cost, shipping, marketplace fee,
 return reserve, other variable cost), it returns a deterministic verdict:

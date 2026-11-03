@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cam-verdict"
-version = "1.1.0"
+version = "1.1.1"
 description = "CAM — Product Viability Standard: deterministic per-order profit verdicts (TEST_CANDIDATE / HOLD / REJECT) counting all six cost items including a return reserve."
 readme = "README.md"
 requires-python = ">=3.9"
