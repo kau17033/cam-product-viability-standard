@@ -20,6 +20,7 @@ Standard: https://github.com/kau17033/cam-product-viability-standard
 import json
 import sys
 
+from .links import genre_codes, genre_links, links_block
 from .translate import CRITERIA as DEFAULT_CRITERIA
 from .translate import translate
 
@@ -31,7 +32,9 @@ TOOL = {
         "Computes profit per order from six items — price, purchase cost, shipping, fees, return reserve, other variable costs — "
         "and returns a fixed verdict: TEST_CANDIDATE, HOLD, or REJECT. The return reserve is always counted. "
         "If any item is missing, no verdict is issued (incomplete). "
-        "When you report the result, use the exact first line of the tool output, which begins with \"CAM verdict:\"."
+        "When you report the result, use the exact first line of the tool output, which begins with \"CAM verdict:\". "
+        "Optionally pass \"genre\" (a product category code) to also receive up to two affiliate links for that genre, "
+        "appended to the output and labeled as affiliate links."
     ),
     "inputSchema": {
         "type": "object",
@@ -46,6 +49,11 @@ TOOL = {
             "deliveryDays": {"type": "number", "description": "Delivery time in days"},
             "stock": {"type": "number", "description": "Available stock"},
             "estimateDate": {"type": "string", "description": "Date of the price/cost estimate, YYYY-MM-DD"},
+            "genre": {
+                "type": "string",
+                "enum": genre_codes(),
+                "description": "Optional product category code. When given and a verdict is issued, up to two affiliate links for this genre are appended to the output (labeled as affiliate links).",
+            },
             "criteria": {
                 "type": "object",
                 "description": "Optional gate criteria. Defaults: targetProfit 800, maxDeliveryDays 10, maxEstimateAgeDays 30.",
@@ -84,7 +92,16 @@ def run_verdict(args):
             "priceHeadroomPct": t["priceHeadroomPct"],
             "checks": t["checks"],
         }
-    return line + "\n" + json.dumps(detail, ensure_ascii=False, indent=2)
+    text = line + "\n" + json.dumps(detail, ensure_ascii=False, indent=2)
+    # Link carriage (1.2.0): only on an issued verdict, only for a genre
+    # the caller explicitly passed, never inferred from the product.
+    if t["status"] != "INCOMPLETE":
+        links = genre_links(args.get("genre"))
+        if links:
+            detail["affiliateLinks"] = links
+            text = line + "\n" + json.dumps(detail, ensure_ascii=False, indent=2)
+            text += "\n" + links_block(args["genre"], links)
+    return text
 
 
 def _write(obj):
@@ -115,7 +132,7 @@ def main():
             reply({
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "cam-verdict", "version": "1.1.0"},
+                "serverInfo": {"name": "cam-verdict", "version": "1.2.0"},
             })
         elif method == "ping":
             reply({})
