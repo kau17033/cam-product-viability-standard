@@ -33,7 +33,7 @@ node server.mjs
 
 Required inputs (JPY per order): `price`, `cost`, `shipping`, `fee`, `returnReserve`, `otherVariable`. Optional: `name`, `deliveryDays`, `stock`, `estimateDate` (YYYY-MM-DD), and `criteria` (`targetProfit`, `maxDeliveryDays`, `maxEstimateAgeDays`; defaults 800 / 10 / 30).
 
-`logic.cjs` is the reference engine of the standard, byte-identical to the one running in the free checker: https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/
+`logic.cjs` is the reference engine for this source checkout. Parity with the externally hosted browser checker at https://cam-proof-demo-owned-20261028.ki4033322.workers.dev/ is **not verified for source v2.0.0**; do not claim byte identity without a deployed asset hash and runtime replay.
 
 ## Incomplete input contract (2026-11-13)
 
