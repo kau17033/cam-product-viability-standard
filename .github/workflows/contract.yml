@@ -19,3 +19,5 @@ jobs:
       - run: node tests/test-contract.mjs
       - run: python tests/test-contract-py.py
       - run: node tools/translator/test.mjs
+      - run: python -m compileall -q tools/pypi-package/src/cam_verdict
+      - run: node --check tools/mcp/server.mjs

@@ -132,3 +132,7 @@ One standard, one corpus, one shelf, one tool. Every surface names the others, s
 - [MCP Registry entry — io.github.kau17033/cam-product-viability-standard](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.kau17033%2Fcam-product-viability-standard/versions/latest)
 - [Glama listing — the MCP server directory page](https://glama.ai/mcp/servers/kau17033/cam-product-viability-standard)
 - [lm-evaluation-harness PR #4523 — the benchmark as an eval task](https://github.com/EleutherAI/lm-evaluation-harness/pull/4523)
+
+## Source version 2.0.0 migration (2026-11-13)
+
+The source changes the no-verdict representation to `status: INCOMPLETE`, `verdict: null` and requires all five checks to pass for TEST_CANDIDATE. The Python and npm source package versions are bumped to 2.0.0. **Published** PyPI/npm distributions and the root MCP registry descriptor remain pinned to their previously published versions until release verification; changing the source does not publish them. The PyPI workflow now builds from checked-out source and does not upload historical tracked 1.2.0 binaries.

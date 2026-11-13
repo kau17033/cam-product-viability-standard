@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cam-verdict"
-version = "1.2.0"
+version = "2.0.0"
 description = "CAM — Product Viability Standard: for items sold but no profit left （売れたのに残らない）, deterministic per-order profit verdicts (TEST_CANDIDATE / HOLD / REJECT) counting all six cost items including a return reserve — decide whether a product is worth stocking before you buy."
 readme = "README.md"
 requires-python = ">=3.9"

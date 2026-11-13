@@ -1,17 +1,26 @@
 name: Publish to PyPI
-
 on:
   workflow_dispatch:
-
 permissions:
+  contents: read
   id-token: write
-
 jobs:
   publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install build
+      - name: Build current source instead of committed legacy dist
+        run: python -m build tools/pypi-package --outdir /tmp/cam-release-dist
+      - name: Confirm v2 artifacts
+        run: |
+          ls /tmp/cam-release-dist/cam_verdict-2.0.0-*.whl
+          ls /tmp/cam-release-dist/cam_verdict-2.0.0.tar.gz
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: tools/pypi-package/dist/
+          packages-dir: /tmp/cam-release-dist/
