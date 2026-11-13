@@ -7,18 +7,23 @@
     "url": "https://github.com/kau17033/cam-product-viability-standard",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "cam-verdict",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "runtimeHint": "npx",
       "runtimeArguments": [
-        { "type": "positional", "value": "cam-verdict-mcp" }
+        {
+          "type": "positional",
+          "value": "cam-verdict-mcp"
+        }
       ],
-      "transport": { "type": "stdio" }
+      "transport": {
+        "type": "stdio"
+      }
     }
   ]
 }

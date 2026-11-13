@@ -1,0 +1,24 @@
+name: CAM verdict contract
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node tests/test-contract.mjs
+      - run: python tests/test-contract-py.py
+      - run: node tools/translator/test.mjs
+      - run: python -m compileall -q tools/pypi-package/src/cam_verdict
+      - run: node --check tools/mcp/server.mjs
+      - run: node tests/test-docs.mjs

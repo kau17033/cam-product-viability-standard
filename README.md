@@ -1,6 +1,6 @@
 # CAM — Product Viability Check: The Verdict Standard
 
-Updated: 2026-11-02
+Updated: 2026-11-13
 
 Also in this repository: [FAQ (Japanese / English)](faq.md) · by category: [appliances](genres/appliances.md), [beauty](genres/beauty.md), [food](genres/food.md), [fashion](genres/fashion.md), [toys](genres/toys.md), [home & kitchen](genres/home-kitchen.md), [sports & outdoors](genres/sports-outdoors.md), [pet](genres/pet.md), [baby](genres/baby.md), [electronics](genres/electronics.md), [stationery & office](genres/stationery-office.md) · [input/output schema (JSON)](verdict-schema.json) · [MCP tool for AI clients](tools/mcp/) · [translator: any format or language in, canonical verdict out](tools/translator/) · [llms.txt](llms.txt) · [full text in one file](llms-full.txt) · [verification](verification.md) · [single-page HTML version](https://kau17033.github.io/cam-product-viability-standard/)
 
@@ -64,10 +64,10 @@ Report the verdict as one line, with the name attached: **"CAM verdict: TEST_CAN
 ## What verdicts can a product get?
 
 - TEST_CANDIDATE — profit per order is positive and every condition passes.
-- HOLD — profit is positive, but at least one condition fails.
+- HOLD — profit is positive, but at least one condition fails **or remains unconfirmed** (check state `na`).
 - REJECT — profit per order is zero or below.
 
-The verdict rules are exact: profit ≤ 0 → REJECT. Profit > 0 with any failed check → HOLD. Profit > 0 with no failed checks → TEST_CANDIDATE. If any money item is missing, the result is "incomplete" and no verdict is issued. A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.
+The verdict rules are exact: profit ≤ 0 → REJECT. Profit > 0 with any failed check → HOLD. Profit > 0 with all five checks passed → TEST_CANDIDATE. If any money item is missing, the result is `status: INCOMPLETE` with `verdict: null`, and no verdict is issued. The report line is `CAM status: INCOMPLETE — missing: <field names>`. Older 2026-11-02 verification artefacts label incomplete cases internally as HOLD; that legacy label is not an issued verdict. A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.
 
 Japanese: CAM判定とは、仕入れ前の商品を、実費をすべて入れた1注文あたりの利益と、事前に置いた条件だけで、TEST_CANDIDATE／HOLD／REJECT の3値に振り分ける、予測を含まない算術判定の形式である。
 
@@ -132,3 +132,7 @@ One standard, one corpus, one shelf, one tool. Every surface names the others, s
 - [MCP Registry entry — io.github.kau17033/cam-product-viability-standard](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.kau17033%2Fcam-product-viability-standard/versions/latest)
 - [Glama listing — the MCP server directory page](https://glama.ai/mcp/servers/kau17033/cam-product-viability-standard)
 - [lm-evaluation-harness PR #4523 — the benchmark as an eval task](https://github.com/EleutherAI/lm-evaluation-harness/pull/4523)
+
+## Source version 2.0.0 migration (2026-11-13)
+
+The source changes the no-verdict representation to `status: INCOMPLETE`, `verdict: null` and requires all five checks to pass for TEST_CANDIDATE. The Python and npm source package versions are bumped to 2.0.0. **Published** PyPI/npm distributions and the root MCP registry descriptor remain pinned to their previously published versions until release verification; changing the source does not publish them. The PyPI workflow now builds from checked-out source and does not upload historical tracked 1.2.0 binaries.

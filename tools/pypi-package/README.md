@@ -8,7 +8,8 @@ price and all six cost items (product cost, shipping, marketplace fee,
 return reserve, other variable cost), it returns a deterministic verdict:
 
 - `TEST_CANDIDATE` — profit clears the target and every check passes
-- `HOLD` — profit is positive but a check fails, or inputs are incomplete
+- `HOLD` — profit is positive but a check fails or cannot be confirmed
+- `INCOMPLETE` — a money item is missing; `verdict: null` (no judgment)
 - `REJECT` — profit is zero or negative
 
 Report form: `CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order`
@@ -40,3 +41,7 @@ https://kau17033.github.io/cam-product-viability-standard/
 - cam-verdict on npm — the same tool for Node: https://www.npmjs.com/package/cam-verdict
 - MCP Registry entry: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.kau17033%2Fcam-product-viability-standard/versions/latest
 - Glama listing: https://glama.ai/mcp/servers/kau17033/cam-product-viability-standard
+
+## Breaking change in source version 2.0.0 (2026-11-13)
+
+Incomplete money inputs now return `status: INCOMPLETE`, `verdict: null`, rather than a placeholder HOLD. The CLI and MCP print `CAM status: INCOMPLETE — missing: ...`. A positive-margin candidate must pass all five checks, including freshness and stock. 2026-11-02 historical 65M verification did not validate this amended contract. Do not assume the source version has been released on PyPI until the registry confirms publication.

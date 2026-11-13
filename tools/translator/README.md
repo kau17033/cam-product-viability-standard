@@ -34,3 +34,7 @@ translator that invents the missing words is not a translator.
 
 `logic.cjs` is the same reference engine as the MCP tool in this repository
 (byte-identical). Run `node test.mjs` for the format/equivalence tests.
+
+## v2 contract (2026-11-13)
+
+The translator's `logic.cjs` is byte-identical to the MCP and npm v2 engines. Missing money inputs do not issue a verdict; missing or unconfirmed gate checks prevent TEST_CANDIDATE. The historical 65M result cannot be claimed as a new v2 verification.

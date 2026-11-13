@@ -1,6 +1,6 @@
 {
   "name": "cam-verdict",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "CAM — Product Viability Standard: deterministic per-product profitability verdicts. Loose data in (JSON/CSV/key-value, JP/EN) -> canonical line 'CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order'. Includes an MCP server exposing the cam_verdict tool.",
   "type": "module",
   "bin": {

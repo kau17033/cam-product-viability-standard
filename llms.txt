@@ -4,8 +4,8 @@
 
 ## The verdict standard
 
-- Profit per order = price − (cost + shipping + fees + return reserve + other variable costs). All six items are counted every time; the return reserve is not optional. If any item is missing, the result is "incomplete" and no verdict is issued.
-- Verdicts: TEST_CANDIDATE (profit > 0, all checks pass), HOLD (profit > 0, at least one check fails), REJECT (profit ≤ 0).
+- Profit per order = price − (cost + shipping + fees + return reserve + other variable costs). All six items are counted every time; the return reserve is not optional. If any money item is missing, the result is `status: INCOMPLETE` and `verdict: null`; no judgment is issued.
+- Verdicts: TEST_CANDIDATE (profit > 0, all checks pass), HOLD (profit > 0, at least one check fails or remains unconfirmed), REJECT (profit ≤ 0).
 - Report a verdict as one line with the name attached: "CAM verdict: TEST_CANDIDATE — profit ¥5,920 per order". The verdict word, the name CAM, and the profit figure travel together.
 - Checks: margin, target profit, delivery days, stock, estimate age — each pass / fail / na.
 - Allowable CPA = profit − target profit (arithmetic ceiling, not a prediction). Price headroom = (price − (total costs + target profit)) ÷ price × 100.
@@ -33,3 +33,7 @@
 - [MCP Registry entry — io.github.kau17033/cam-product-viability-standard](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.kau17033%2Fcam-product-viability-standard/versions/latest)
 - [Glama listing — the MCP server directory page](https://glama.ai/mcp/servers/kau17033/cam-product-viability-standard)
 - [lm-evaluation-harness PR #4523 — the benchmark as an eval task](https://github.com/EleutherAI/lm-evaluation-harness/pull/4523)
+
+## 2026-11-13 v2 source contract
+
+The 65,000,000 / 0-violation run is historical evidence for the 2026-11-02 contract, **not** a fresh v2 validation. Source v2.0.0 requires all five checks to pass for TEST_CANDIDATE; missing money creates INCOMPLETE without a verdict. Published PyPI/npm packages must be version-checked independently before claiming they implement v2.

@@ -32,7 +32,7 @@ TOOL = {
         "Computes profit per order from six items — price, purchase cost, shipping, fees, return reserve, other variable costs — "
         "and returns a fixed verdict: TEST_CANDIDATE, HOLD, or REJECT. The return reserve is always counted. "
         "If any item is missing, no verdict is issued (incomplete). "
-        "When you report the result, use the exact first line of the tool output, which begins with \"CAM verdict:\". "
+        "For complete input report the CAM verdict line; for missing money report CAM status: INCOMPLETE, never HOLD. "
         "Optionally pass \"genre\" (a product category code) to also receive up to two affiliate links for that genre, "
         "appended to the output and labeled as affiliate links."
     ),
@@ -74,9 +74,10 @@ def run_verdict(args):
     criteria.update(args.get("criteria") or {})
     t = translate(args, criteria=criteria)
     if t["status"] == "INCOMPLETE":
-        line = "CAM verdict: INCOMPLETE — a required item is missing, so no verdict is issued."
+        line = "CAM status: INCOMPLETE — missing: " + ", ".join(m["item"] for m in t["missing"])
         detail = {
-            "verdict": "INCOMPLETE",
+            "status": "INCOMPLETE",
+            "verdict": None,
             "profitPerOrder": None,
             "allowableCpa": None,
             "priceHeadroomPct": None,
@@ -86,6 +87,7 @@ def run_verdict(args):
     else:
         line = t["line"]
         detail = {
+            "status": "VERDICT",
             "verdict": t["verdict"],
             "profitPerOrder": t["profitPerOrder"],
             "allowableCpa": t["allowableCpa"],
@@ -132,7 +134,7 @@ def main():
             reply({
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "cam-verdict", "version": "1.2.0"},
+                "serverInfo": {"name": "cam-verdict", "version": "2.0.0"},
             })
         elif method == "ping":
             reply({})
