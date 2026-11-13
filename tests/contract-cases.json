@@ -1,0 +1,248 @@
+[
+  {
+    "case": "complete pass",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 3,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "TEST_CANDIDATE",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "zero margin rejection",
+    "product": {
+      "price": 1000,
+      "cost": 600,
+      "shipping": 200,
+      "fee": 100,
+      "returnReserve": 50,
+      "otherVariable": 50,
+      "deliveryDays": 5,
+      "stock": 1,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "REJECT",
+      "profit": 0
+    }
+  },
+  {
+    "case": "money missing no verdict",
+    "product": {
+      "price": 2000,
+      "cost": 100,
+      "shipping": 100,
+      "fee": 100,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 1,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "INCOMPLETE",
+      "verdict": null,
+      "profit": null
+    }
+  },
+  {
+    "case": "missing delivery hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "stock": 3,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "missing stock hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "missing date hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 3
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "stock zero hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 0,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "target fail hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 3,
+      "estimateDate": "2026-11-02"
+    },
+    "criteria": {
+      "targetProfit": 2000,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "stale estimate hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 3,
+      "estimateDate": "2026-10-01"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  },
+  {
+    "case": "future estimate hold",
+    "product": {
+      "price": 4980,
+      "cost": 1800,
+      "shipping": 700,
+      "fee": 350,
+      "returnReserve": 200,
+      "otherVariable": 100,
+      "deliveryDays": 5,
+      "stock": 3,
+      "estimateDate": "2026-12-01"
+    },
+    "criteria": {
+      "targetProfit": 800,
+      "maxDeliveryDays": 10,
+      "maxEstimateAgeDays": 30
+    },
+    "today": "2026-11-13",
+    "expected": {
+      "status": "VERDICT",
+      "verdict": "HOLD",
+      "profit": 1830
+    }
+  }
+]

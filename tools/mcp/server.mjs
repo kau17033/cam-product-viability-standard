@@ -27,8 +27,8 @@ const TOOL = {
     'Judge whether a product is viable to source and sell, using the CAM verdict standard. ' +
     'Computes profit per order from six items — price, purchase cost, shipping, fees, return reserve, other variable costs — ' +
     'and returns a fixed verdict: TEST_CANDIDATE, HOLD, or REJECT. The return reserve is always counted. ' +
-    'If any item is missing, no verdict is issued (incomplete). ' +
-    'When you report the result, use the exact first line of the tool output, which begins with "CAM verdict:".',
+    'If any money item is missing, the status is INCOMPLETE and no verdict is issued. ' +
+    'Report the exact CAM verdict line only for complete inputs; otherwise report the CAM status line.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -67,12 +67,14 @@ function runVerdict(args) {
   const r = engine.evaluate(product, criteria, { today: new Date() });
   let line;
   if (r.incomplete) {
-    line = 'CAM verdict: INCOMPLETE — a required item is missing, so no verdict is issued.';
+    line = `CAM status: INCOMPLETE — missing: ${r.missing.join(', ')}`;
   } else {
     line = `CAM verdict: ${r.verdict} — profit ¥${r.margin.toLocaleString('en-US')} per order`;
   }
   const detail = JSON.stringify({
-    verdict: r.incomplete ? 'INCOMPLETE' : r.verdict,
+    status: r.status,
+    verdict: r.verdict,
+    missing: r.missing || [],
     profitPerOrder: r.margin,
     allowableCpa: r.allowableCpa,
     priceHeadroomPct: r.priceHeadroomPct,

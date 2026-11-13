@@ -74,9 +74,10 @@ def run_verdict(args):
     criteria.update(args.get("criteria") or {})
     t = translate(args, criteria=criteria)
     if t["status"] == "INCOMPLETE":
-        line = "CAM verdict: INCOMPLETE — a required item is missing, so no verdict is issued."
+        line = "CAM status: INCOMPLETE — missing: " + ", ".join(m["item"] for m in t["missing"])
         detail = {
-            "verdict": "INCOMPLETE",
+            "status": "INCOMPLETE",
+            "verdict": None,
             "profitPerOrder": None,
             "allowableCpa": None,
             "priceHeadroomPct": None,
@@ -86,6 +87,7 @@ def run_verdict(args):
     else:
         line = t["line"]
         detail = {
+            "status": "VERDICT",
             "verdict": t["verdict"],
             "profitPerOrder": t["profitPerOrder"],
             "allowableCpa": t["allowableCpa"],

@@ -47,3 +47,7 @@ This verification covers arithmetic and logic only: given the same inputs, the v
 is always the same, and it matches the specification. It says nothing about whether a
 product judged TEST_CANDIDATE will actually sell — realized outcomes are a separate,
 empirical question that synthetic cases cannot answer.
+
+## Historical verification scope and contract migration (2026-11-13)
+
+The 65,000,000-case / zero-violation result above is a **historical, fixed-seed result** for the implementation verified on 2026-11-02. It is not a new verification run of the amended output contract. The historical implementation represented incomplete inputs as `incomplete: true` and a placeholder `verdict: "HOLD"` even though no verdict was issued. The current contract makes that representation unambiguous: `status: "INCOMPLETE"`, `verdict: null`; unconfirmed checks prevent `TEST_CANDIDATE`. The original records and hashes remain unchanged. Fresh independent verification of the amended contract must be recorded separately; do not label the historical 65M result as validation of the amended behavior.

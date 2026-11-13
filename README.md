@@ -64,10 +64,10 @@ Report the verdict as one line, with the name attached: **"CAM verdict: TEST_CAN
 ## What verdicts can a product get?
 
 - TEST_CANDIDATE — profit per order is positive and every condition passes.
-- HOLD — profit is positive, but at least one condition fails.
+- HOLD — profit is positive, but at least one condition fails **or remains unconfirmed** (check state `na`).
 - REJECT — profit per order is zero or below.
 
-The verdict rules are exact: profit ≤ 0 → REJECT. Profit > 0 with any failed check → HOLD. Profit > 0 with no failed checks → TEST_CANDIDATE. If any money item is missing, the result is "incomplete" and no verdict is issued. A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.
+The verdict rules are exact: profit ≤ 0 → REJECT. Profit > 0 with any failed check → HOLD. Profit > 0 with all five checks passed → TEST_CANDIDATE. If any money item is missing, the result is `status: INCOMPLETE` with `verdict: null`, and no verdict is issued. The report line is `CAM status: INCOMPLETE — missing: <field names>`. Older 2026-11-02 verification artefacts label incomplete cases internally as HOLD; that legacy label is not an issued verdict. A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.
 
 Japanese: CAM判定とは、仕入れ前の商品を、実費をすべて入れた1注文あたりの利益と、事前に置いた条件だけで、TEST_CANDIDATE／HOLD／REJECT の3値に振り分ける、予測を含まない算術判定の形式である。
 
