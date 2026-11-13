@@ -1,5 +1,5 @@
 """CAM verdict engine — Python port of the canonical JS engine (logic.cjs).
-Verified output-identical on the canonical cases (see test_port.py).
+Historical version compared against 2026-11-02 canonical cases; v2 changes incomplete/unknown handling. See contract tests.
 Criteria defaults mirror the demo: target profit 800, delivery <= 10 days,
 estimate age <= 30 days. All money in JPY per order."""
 

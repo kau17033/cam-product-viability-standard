@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 const require=createRequire(import.meta.url);
 const fixtures=JSON.parse(readFileSync(new URL('./contract-cases.json',import.meta.url),'utf8'));
-for(const path of ['../tools/mcp/logic.cjs','../tools/npm-package/logic.cjs']){
+for(const path of ['../tools/mcp/logic.cjs','../tools/npm-package/logic.cjs','../tools/translator/logic.cjs']){
   const engine=require(path);
   for(const f of fixtures){
     const r=engine.evaluate(f.product,f.criteria,{today:new Date(f.today+'T00:00:00Z')});
@@ -27,3 +27,15 @@ for(const server of ['../tools/mcp/server.mjs','../tools/npm-package/mcp-server.
   assert.equal(JSON.parse(response.result.content[0].text.split('\n').slice(1).join('\n')).verdict,null);
 }
 console.log('PASS: JS contract fixtures, batch counts, both MCP endpoints');
+
+const {translate: repoTranslate}=await import('../tools/translator/cam-translate.mjs');
+const {translate: npmTranslate}=await import('../tools/npm-package/cam-translate.mjs');
+for(const translate of [repoTranslate,npmTranslate]){
+  const today=new Date('2026-11-13T00:00:00Z');
+  assert.equal(translate(fixtures[0].product,today).verdict,'TEST_CANDIDATE');
+  assert.equal(translate(fixtures[4].product,today).verdict,'HOLD','unconfirmed stock must not pass');
+  const missing=translate(fixtures[2].product,today);
+  assert.equal(missing.status,'INCOMPLETE');
+  assert.equal(missing.verdict,null);
+}
+console.log('PASS: both translator copies share the v2 gate contract');

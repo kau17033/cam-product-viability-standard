@@ -13,3 +13,4 @@ for (const [input, want] of cases) {
 const inc = translate({ price: 1000, cost: 500 }, today);
 if (inc.status !== 'INCOMPLETE' || inc.missing.length !== 4) { console.log('FAIL incomplete', JSON.stringify(inc)); fail++; }
 console.log(fail === 0 ? 'ALL TESTS PASS (3 formats/cases + incomplete)' : `${fail} FAILURES`);
+if (fail) process.exitCode = 1;

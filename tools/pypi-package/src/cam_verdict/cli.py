@@ -14,7 +14,7 @@ def main():
     product = canon_product(raw)
     r = evaluate(product)
     if r.get("incomplete"):
-        print("CAM verdict: INCOMPLETE — missing items: " + ", ".join(r["missing"]))
+        print("CAM status: INCOMPLETE — missing: " + ", ".join(r["missing"]))
     else:
         print(f"CAM verdict: {r['verdict']} — profit ¥{r['profit']} per order")
     # Link carriage (1.2.0): only on an issued verdict, only for a genre

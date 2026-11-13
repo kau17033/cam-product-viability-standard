@@ -63,7 +63,9 @@
       return {
         sku: product.sku || "",
         name: product.name || "",
-        verdict: "HOLD",
+        status: "INCOMPLETE",
+        verdict: null,
+        missing: ["price", ...COST_KEYS].filter(function (k) { return num(product[k]) === null; }),
         margin: null,
         marginRate: null,
         allowableCpa: null,
@@ -99,7 +101,7 @@
     var maxAge = num(criteria.maxEstimateAgeDays);
     if (product.estimateDate && maxAge !== null) {
       var age = daysBetween(new Date(product.estimateDate), today);
-      check("estimateAge", "見積の鮮度", age <= maxAge ? "pass" : "fail",
+      check("estimateAge", "見積の鮮度", !Number.isFinite(age) || age < 0 ? "na" : age <= maxAge ? "pass" : "fail",
         "見積から " + age + " 日 / 許容 " + maxAge + " 日");
     } else {
       check("estimateAge", "見積の鮮度", "na",
@@ -107,14 +109,16 @@
     }
 
     var anyFail = checks.some(function (c) { return c.state === "fail"; });
+    var anyUnconfirmed = checks.some(function (c) { return c.state === "na"; });
     var verdict;
     if (margin <= 0) verdict = "REJECT";
-    else if (!anyFail) verdict = "TEST_CANDIDATE";
+    else if (!anyFail && !anyUnconfirmed) verdict = "TEST_CANDIDATE";
     else verdict = "HOLD";
 
     return {
       sku: product.sku || "",
       name: product.name || "",
+      status: "VERDICT",
       verdict: verdict,
       margin: margin,
       marginRate: price > 0 ? margin / price : null,
@@ -145,8 +149,8 @@
     var results = products.map(function (p) {
       return applyTestBudget(evaluate(p, criteria, options), testBudget);
     });
-    var counts = { TEST_CANDIDATE: 0, HOLD: 0, REJECT: 0 };
-    results.forEach(function (r) { counts[r.verdict] += 1; });
+    var counts = { TEST_CANDIDATE: 0, HOLD: 0, REJECT: 0, INCOMPLETE: 0 };
+    results.forEach(function (r) { counts[r.verdict === null ? "INCOMPLETE" : r.verdict] += 1; });
     return { results: results, counts: counts };
   }
 
@@ -177,7 +181,7 @@
     var lines = [head.join(",")];
     results.forEach(function (r, i) {
       var reason = r.reasons.join(" / ").replace(/,/g, "、");
-      lines.push([r.sku, r.name, "", "", "", "", "", "", "", "", "", "", r.verdict, r.margin === null ? "" : r.margin, reason].join(","));
+      lines.push([r.sku, r.name, "", "", "", "", "", "", "", "", "", "", r.verdict === null ? "INCOMPLETE" : r.verdict, r.margin === null ? "" : r.margin, reason].join(","));
     });
     return lines.join("\n");
   }

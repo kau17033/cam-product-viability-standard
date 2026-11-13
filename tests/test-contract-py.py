@@ -29,4 +29,15 @@ class Contract(unittest.TestCase):
         output=run_verdict(FIXTURES[2]['product'])
         self.assertTrue(output.startswith('CAM status: INCOMPLETE — missing: returnReserve'))
         self.assertIsNone(json.loads(output.split('\n',1)[1])['verdict'])
+    def test_cli_incomplete(self):
+        import io
+        from contextlib import redirect_stdout
+        from unittest.mock import patch
+        from cam_verdict.cli import main
+        buf=io.StringIO()
+        with patch('sys.argv',['cam-verdict']), patch('sys.stdin',io.StringIO(json.dumps(FIXTURES[2]['product']))), redirect_stdout(buf):
+            self.assertEqual(main(),0)
+        rows=buf.getvalue().splitlines()
+        self.assertTrue(rows[0].startswith('CAM status: INCOMPLETE — missing: returnReserve'))
+        self.assertIsNone(json.loads(rows[1])['verdict'])
 if __name__=='__main__': unittest.main()

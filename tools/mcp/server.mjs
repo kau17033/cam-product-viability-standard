@@ -93,7 +93,7 @@ rl.on('line', (raw) => {
   const fail = (code, message) => process.stdout.write(JSON.stringify({ jsonrpc: '2.0', id: msg.id, error: { code, message } }) + '\n');
   switch (msg.method) {
     case 'initialize':
-      reply({ protocolVersion: '2024-11-05', capabilities: { tools: {} }, serverInfo: { name: 'cam-verdict', version: '1.0.0' } });
+      reply({ protocolVersion: '2024-11-05', capabilities: { tools: {} }, serverInfo: { name: 'cam-verdict', version: '2.0.0' } });
       break;
     case 'ping':
       reply({});
