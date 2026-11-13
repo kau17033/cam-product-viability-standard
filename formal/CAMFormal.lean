@@ -39,7 +39,7 @@ theorem extra_cost_to_reject (m : Int) :
   simp [margin]
 
 theorem target_check_stays_passing_through_equality
-    (m target delta : Int) (h : 0 ≤ delta) (h2 : delta ≤ m - target) :
+    (m target delta : Int) (h2 : delta ≤ m - target) :
     target ≤ m - delta := by
   omega
 
