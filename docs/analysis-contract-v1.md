@@ -11,17 +11,17 @@ It must not be interpreted as a CAM commercial product launch.
 \`evaluate()\`; the only invocation of that engine occurs in regression tests.
 Results do not alter TEST_CANDIDATE / HOLD / REJECT.
 
-## Real, observable baseline discrepancies (not silently repaired)
-On the base main at integration time, \`logic.cjs\` emits HOLD with
-\`incomplete: true\` on missing money, although the textual standard says
-no verdict should be issued. Also, a complete money input with \`na\`
-nonmoney gates may produce TEST_CANDIDATE. The Python port has a different
-stock-absent representation. The JavaScript freshness check depends on
-\`options.today\` (otherwise wall-clock time). These are separate contract
-migration tasks. **Do not claim they are fixed by this package.**
-An existing open v2 PR addresses part of that migration but changes the
-public output contract; merging it requires its own compatibility gate.
-65,000,000 historical cases are not rerun and are not a proof of this package.
+## Version boundaries (do not conflate releases)
+The original base commit \`5e5b0719\` represented incomplete money as
+\`incomplete: true\` with a placeholder HOLD and could issue TEST_CANDIDATE
+when optional gates remained \`na\`. During this implementation, PR #1
+merged into main at \`ddccc93c\`, changing these semantics in source v2.
+This analysis package does not modify or validate that migration.
+The JavaScript freshness check still needs an explicit \`options.today\`
+to be reproducible from declared inputs. Published distributions must be
+verified independently from repository source. The 65,000,000 historical
+cases are not rerun and do not prove either the source v2 transition or
+this analysis package.
 
 ## Arithmetic
 All analysis inputs are required, declared **nonnegative safe-integer JPY**
