@@ -18,3 +18,9 @@ assert.equal(read('../tools/mcp/server.mjs'),read('../tools/npm-package/mcp-serv
 assert.ok(!full.includes('Profit > 0 with no failed checks → TEST_CANDIDATE'),'stale gate phrase in full text');
 assert.ok(read('../llms.txt').includes('remains unconfirmed'));
 console.log('PASS: full-text mirror, three engine copies, MCP copies, llms summary');
+
+const page=read('../index.html');
+assert.ok(page.includes('status: INCOMPLETE')&&page.includes('verdict: null'),'static HTML incomplete contract');
+assert.ok(page.includes('fails or remains unconfirmed'),'static HTML HOLD contract');
+assert.ok(page.includes('"dateModified":"2026-11-13"'),'HTML JSON-LD date');
+assert.ok(read('../tools/mcp/README.md').includes('not verified for source v2.0.0'),'no unverified browser parity claim');

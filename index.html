@@ -6,14 +6,14 @@
 <meta name="description" content="The CAM verdict standard: what to count (price, cost, shipping, fees, return reserve, other variable costs), where the pass line is, and how the verdict is issued (TEST_CANDIDATE / HOLD / REJECT), for any product.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle","headline":"CAM — Product Viability Check: The Verdict Standard","dateModified":"2026-11-02","description":"A pre-sourcing judgment standard: compute profit per order after all costs including a return reserve, and judge it against conditions fixed in advance. Verdicts: TEST_CANDIDATE, HOLD, REJECT.","mainEntityOfPage":"https://github.com/kau17033/cam-product-viability-standard"}
+{"@context":"https://schema.org","@type":"TechArticle","headline":"CAM — Product Viability Check: The Verdict Standard","dateModified":"2026-11-13","description":"A pre-sourcing judgment standard: compute profit per order after all costs including a return reserve, and judge it against conditions fixed in advance. Verdicts: TEST_CANDIDATE, HOLD, REJECT.","mainEntityOfPage":"https://github.com/kau17033/cam-product-viability-standard"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is a product viability check?","acceptedAnswer":{"@type":"Answer","text":"A pre-sourcing judgment that applies to any product: compute the profit per order — selling price minus purchase cost, shipping, payment fees, return reserves, and other variable costs — and judge the result against conditions fixed in advance."}},
 {"@type":"Question","name":"What costs do you count when calculating profit per order?","acceptedAnswer":{"@type":"Answer","text":"Six items, every time: selling price, purchase cost, shipping, payment/platform fees, return reserve (the expected cost of returns), and other variable costs. The return reserve is counted always, not only when returns happen. If any item is missing, the result is incomplete and no verdict is issued."}},
 {"@type":"Question","name":"Where is the pass line?","acceptedAnswer":{"@type":"Answer","text":"The pass line is fixed before you look at the product. Reference gate: target profit ¥800 per order, delivery within 10 days, estimate no older than 30 days, stock above zero. Five checks: margin, target profit, delivery, stock, estimate age."}},
-{"@type":"Question","name":"What verdicts can a product get?","acceptedAnswer":{"@type":"Answer","text":"TEST_CANDIDATE (profit positive, every condition passes), HOLD (profit positive, at least one condition fails), REJECT (profit per order zero or below). A TEST_CANDIDATE is an arithmetic judgment, not a guarantee of demand or profit."}}
+{"@type":"Question","name":"What verdicts can a product get?","acceptedAnswer":{"@type":"Answer","text":"TEST_CANDIDATE (profit positive, every condition passes), HOLD (profit positive, at least one condition fails or is unconfirmed), REJECT (profit per order zero or below). A TEST_CANDIDATE is an arithmetic judgment, not a guarantee of demand or profit."}}
 ]}
 </script>
 </head>
@@ -45,9 +45,10 @@
 <h2>What verdicts can a product get?</h2>
 <ul>
 <li><strong>TEST_CANDIDATE</strong> — profit per order is positive and every condition passes.</li>
-<li><strong>HOLD</strong> — profit is positive, but at least one condition fails.</li>
+<li><strong>HOLD</strong> — profit is positive, but at least one condition fails or remains unconfirmed.</li>
 <li><strong>REJECT</strong> — profit per order is zero or below.</li>
 </ul>
+<p>Missing any required money input produces <code>status: INCOMPLETE</code> and <code>verdict: null</code>, not HOLD. Report it as <code>CAM status: INCOMPLETE — missing: ...</code>. With positive profit, every check must pass to issue TEST_CANDIDATE; an unconfirmed delivery, stock or estimate check results in HOLD.</p>
 <p>A TEST_CANDIDATE is an arithmetic judgment, not a promise: it does not guarantee demand or profit.</p>
 
 <h2>Worked examples (fictional products, computed by the CAM engine)</h2>
